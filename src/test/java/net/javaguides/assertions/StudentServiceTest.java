@@ -99,6 +99,34 @@ class StudentServiceTest {
         assertNotEquals("Erickeee", actualObject.getName(), "Names are equals");
     }
 
+    @Test
+    public void getStudentNamesByDepartmentTestUsingAssertArrayEquals() {
+
+        StudentService studentService = new StudentService();
+
+        Student student = new Student(1, "Erick", "Science");
+        Student student1 = new Student(2, "Marcos", "Science");
+        Student student2 = new Student(3, "Oriana", "Arts");
+
+        studentService.addStudent(student);
+        studentService.addStudent(student1);
+        studentService.addStudent(student2);
+
+        String[] actualArray = studentService.getStudentNamesByDepartment("Science");
+        String[] expectedArray = {"Erick", "Marcos", "Another"};
+
+//        assertArrayEquals(expectedArray, actualArray);
+//        assertArrayEquals(expectedArray, actualArray, "Student names are not equal");
+
+        Integer[] actualStudentIds = studentService.getStudentIdsByDepartment("Arts");
+        Integer[] expectedStudentIds = {3};
+
+//        assertArrayEquals(expectedStudentIds, actualStudentIds);
+//        assertArrayEquals(expectedStudentIds, actualStudentIds, "Student Ids are not equal");
+        assertArrayEquals(expectedStudentIds, actualStudentIds, () -> "Student Ids are not equal");
+
+    }
+
 
 
 }
