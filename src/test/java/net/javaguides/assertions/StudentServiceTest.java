@@ -29,4 +29,17 @@ class StudentServiceTest {
         assertTrue(() -> actualResult, () -> "List of Student is Empty!");
     }
 
+    @Test
+    public void getStudentsTestUsingAssertFalse(){
+        StudentService studentService = new StudentService();
+
+        Student student = new Student(1, "Erick");
+        List<Student> studentList = studentService.getStudents();
+        //studentService.addStudent(student);
+
+        boolean actualResult = studentList.isEmpty();
+
+        assertFalse(actualResult, ()->"Student list should not be empty!!");
+    }
+
 }
