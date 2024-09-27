@@ -71,4 +71,34 @@ class StudentServiceTest {
 
     }
 
+    @Test
+    public void getStudentByIdTestUsingAssertEquals() {
+        StudentService studentService = new StudentService();
+
+        Student student = new Student(1, "Erick");
+        studentService.addStudent(student);
+
+        Student actualObject = studentService.getStudentById(1);
+
+//        assertEquals(1, actualObject.getId());
+//        assertEquals("Erick", actualObject.getName());
+//        assertEquals(student, actualObject);
+        assertEquals("Erickeee", actualObject.getName(), "Names are not equals");
+
+    }
+
+    @Test
+    public void getStudentByIdTestUsingAssertNotEquals(){
+        StudentService studentService = new StudentService();
+
+        Student student = new Student(1, "Erick");
+        studentService.addStudent(student);
+
+        Student actualObject = studentService.getStudentById(1);
+
+        assertNotEquals("Erickeee", actualObject.getName(), "Names are equals");
+    }
+
+
+
 }
