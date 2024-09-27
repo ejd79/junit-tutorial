@@ -4,6 +4,7 @@ import net.javaguides.Student;
 import net.javaguides.StudentService;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -128,5 +129,23 @@ class StudentServiceTest {
     }
 
 
+    @Test
+    public void getStudentNameListByDepartmentTestUsingAssertIterableEquals() {
+        StudentService studentService = new StudentService();
+
+        Student student = new Student(1, "Erick", "Science");
+        Student student1 = new Student(2, "Marcos", "Science");
+        Student student2 = new Student(3, "Oriana", "Arts");
+
+        studentService.addStudent(student);
+        studentService.addStudent(student1);
+        studentService.addStudent(student2);
+
+        List<String> actualStudentNameList = studentService.getStudentNamesListByDepartment("Science");
+        List<String> expectedStudentNameList = Arrays.asList("Erick", "Marcos");
+
+        assertIterableEquals(expectedStudentNameList, actualStudentNameList);
+
+    }
 
 }
