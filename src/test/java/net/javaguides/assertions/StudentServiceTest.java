@@ -42,4 +42,33 @@ class StudentServiceTest {
         assertFalse(actualResult, ()->"Student list should not be empty!!");
     }
 
+    @Test
+    public void getStudentByIdTestUsingAssertNull() {
+        StudentService studentService = new StudentService();
+
+        Student student = new Student(1, "Ramesh");
+        studentService.addStudent(student);
+
+        Student actualObject = studentService.getStudentById(1);
+
+//        assertNull(actualObject);
+//        assertNull(actualObject, () -> "Student object is not null");
+        assertNull(actualObject, "Student object is not null");
+    }
+
+    @Test
+    public void getStudentByIdTestUsingAssertNotNull() {
+        StudentService studentService = new StudentService();
+
+        Student student = new Student(1, "Ramesh");
+        studentService.addStudent(student);
+
+        Student actualObject = studentService.getStudentById(1);
+
+//        assertNotNull(actualObject);
+//        assertNotNull(actualObject, "Student is null");
+        assertNotNull(actualObject, ()-> "student is Null");
+
+    }
+
 }

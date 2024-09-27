@@ -14,4 +14,11 @@ public class StudentService {
     public void addStudent(Student student){
         students.add(student);
     }
+
+    public Student getStudentById(int studentId) {
+        return students.stream()
+                .filter((student)-> student.getId() == studentId)
+                .findFirst()
+                .orElse(null);
+    }
 }
