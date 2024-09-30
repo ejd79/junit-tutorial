@@ -1,6 +1,7 @@
 package net.javaguides.assertions;
 
 import net.javaguides.Student;
+import net.javaguides.StudentNotFoundException;
 import net.javaguides.StudentService;
 import org.junit.jupiter.api.Test;
 
@@ -145,6 +146,32 @@ class StudentServiceTest {
         List<String> expectedStudentNameList = Arrays.asList("Erick", "Marcos");
 
         assertIterableEquals(expectedStudentNameList, actualStudentNameList);
+
+    }
+
+    @Test
+    public void getStudentByNameTestUsingAssertThrows(){
+
+        StudentService studentService = new StudentService();
+
+        Student student = new Student(1, "Erick", "science");
+        studentService.addStudent(student);
+
+//        assertThrows(NullPointerException.class, () -> {
+//            studentService.getStudentByName("Marcos");
+//        });
+
+//        assertThrows(StudentNotFoundException.class, () -> {
+//            studentService.getStudentByName("Marcos");
+//        });
+
+//        assertThrows(StudentNotFoundException.class, () -> {
+//            studentService.getStudentByName("Erick");
+//        }, "StudentNotFoundException should be thrown, But it wasn't");
+
+        assertThrows(StudentNotFoundException.class, () -> {
+            studentService.getStudentByName("MArcos");
+        }, () -> "StudentNotFoundException should be thrown, But it wasn't");
 
     }
 

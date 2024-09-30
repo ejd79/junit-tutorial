@@ -8,17 +8,17 @@ public class StudentService {
 
     private List<Student> students = new ArrayList<>();
 
-    public List<Student> getStudents(){
+    public List<Student> getStudents() {
         return this.students;
     }
 
-    public void addStudent(Student student){
+    public void addStudent(Student student) {
         students.add(student);
     }
 
     public Student getStudentById(int studentId) {
         return students.stream()
-                .filter((student)-> student.getId() == studentId)
+                .filter((student) -> student.getId() == studentId)
                 .findFirst()
                 .orElse(null);
     }
@@ -26,7 +26,7 @@ public class StudentService {
     public String[] getStudentNamesByDepartment(String department) {
 
         return students.stream()
-                .filter((student)->student.getDepartment().equals(department))
+                .filter((student) -> student.getDepartment().equals(department))
                 .map(Student::getName)
                 .toArray(String[]::new);
     }
@@ -34,7 +34,7 @@ public class StudentService {
     public Integer[] getStudentIdsByDepartment(String department) {
 
         return students.stream()
-                .filter((student)->student.getDepartment().equals(department))
+                .filter((student) -> student.getDepartment().equals(department))
                 .map(Student::getId)
                 .toArray(Integer[]::new);
     }
@@ -42,7 +42,7 @@ public class StudentService {
     public List<String> getStudentNamesListByDepartment(String department) {
 
         return students.stream()
-                .filter((student)->student.getDepartment().equals(department))
+                .filter((student) -> student.getDepartment().equals(department))
                 .map(Student::getName)
                 .collect(Collectors.toList());
     }
@@ -50,9 +50,18 @@ public class StudentService {
     public List<Integer> getStudentIdListByDepartment(String department) {
 
         return students.stream()
-                .filter((student)->student.getDepartment().equals(department))
+                .filter((student) -> student.getDepartment().equals(department))
                 .map(Student::getId)
                 .collect(Collectors.toList());
+    }
+
+    public Student getStudentByName(String name) {
+
+        return students.stream()
+                .filter((student) -> student.getName().equals(name))
+                .findFirst()
+                .orElseThrow(() -> new StudentNotFoundException("Student not found with name: " + name));
+
     }
 
 }
